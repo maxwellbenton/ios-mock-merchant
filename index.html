@@ -51,6 +51,7 @@
 <body>
   <main>
     <div id="ui-section">
+      <div id="build-hash"></div>
       <button id="loadStage">Load Stage Lib.js</button>
       <button id="loadSandbox">Load Sandbox Lib.js</button>
     </div>
@@ -58,6 +59,7 @@
   </main>
   <script>
     (async function () {
+      document.querySelector("#build-hash").innerText = crypto.randomUUID().slice(0,6)
       const loadStageButton = document.querySelector("#loadStage")
       const loadSandboxButton = document.querySelector("#loadSandbox")
       const uiSection = document.querySelector('#ui-section')
