@@ -59,6 +59,7 @@
   <script>
     (async function () {
       setTimeout(() => {
+        console.warn('Sending ios post message')
         window.webkit.messageHandlers.iosMessageHandler.postMessage({
             action: 'launchExternalDCF',
             data: {
