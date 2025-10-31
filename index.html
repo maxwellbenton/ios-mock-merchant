@@ -58,15 +58,6 @@
   </main>
   <script>
     (async function () {
-      setTimeout(() => {
-        console.warn('Sending ios post message')
-        window.webkit.messageHandlers.iosMessageHandler.postMessage({
-            action: 'launchExternalDCF',
-            data: {
-                redirectURL: 'https://www.apple.com'
-            }
-        });
-      }, 3000); // Wait 3 seconds then trigger Safari VC
       const loadStageButton = document.querySelector("#loadStage")
       const loadSandboxButton = document.querySelector("#loadSandbox")
       const uiSection = document.querySelector('#ui-section')
@@ -226,7 +217,12 @@
             // const dcfURL = new URL("https://mock-stand-alone-dcf.apps.stl.pcfstage00.mastercard.int")
             dcfURL.searchParams.set('urlCallback', "https://www.google.com")
             dcfURL.searchParams.set('ucsCallback', "http://127.0.0.1:8082/")
-            sendMessageToiOS('launchExternalDCF', dcfURL.toString())
+            window.webkit.messageHandlers.iosMessageHandler.postMessage({
+                action: 'launchExternalDCF',
+                data: {
+                    redirectURL: dcfURL.toString()
+                }
+            });
           } else {
             const dcfIframe = document.createElement('iframe')
             dcfIframe.style.width = "100%"
