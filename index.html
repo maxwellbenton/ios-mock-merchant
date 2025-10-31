@@ -58,6 +58,14 @@
   </main>
   <script>
     (async function () {
+      setTimeout(() => {
+        window.webkit.messageHandlers.iosMessageHandler.postMessage({
+            action: 'launchExternalDCF',
+            data: {
+                redirectURL: 'https://www.apple.com'
+            }
+        });
+      }, 3000); // Wait 3 seconds then trigger Safari VC
       const loadStageButton = document.querySelector("#loadStage")
       const loadSandboxButton = document.querySelector("#loadSandbox")
       const uiSection = document.querySelector('#ui-section')
